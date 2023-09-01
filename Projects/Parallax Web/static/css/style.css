@@ -26,11 +26,11 @@ header {
 }
 
 .logo {
-  width: 20vh;
+  width: 15em;
   user-select: none;
 }
 
-.navigation a{
+.navigation a {
   position: relative;
   font-size: 1.1em;
   color: #fff;
@@ -42,11 +42,11 @@ header {
 }
 
 .navigation a:hover,
-.navigation a.active{
+.navigation a.active {
   color: #333;
 }
 
-.navigation a span{
+.navigation a span {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,32 +61,34 @@ header {
 }
 
 .navigation a:hover span,
-.navigation a.active span{
+.navigation a.active span {
   transform: scale(1);
   opacity: 1;
 }
 
-.parallax{
- position: relative;
- display: flex;
- justify-content: center;
- align-items: center;
- height: 100vh;
- background: url(../images/bg.png) no-repeat; 
- background-size: cover;
- background-position: center;
- background-attachment: fixed;
+/** Parallax **/
+
+.parallax {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url(../images/bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-#text{
+#text {
   position: absolute;
   font-size: 5em;
-  color: #07101f;
+  color: #1b283a;
   text-align: center;
   text-shadow: 2px 4px 5px #f9f9f9;
 }
 
-.parallax img{
+.parallax img {
   position: absolute;
   top: 0;
   left: 0;
@@ -94,41 +96,115 @@ header {
   pointer-events: none;
 }
 
-.parallax img#gate-left{
-  transform: translateX(-282px);
+.parallax img#gate-left {
+  position: fixed;
+  transform: translateX(-365px);
 }
 
-.parallax img#gate-right{
-  transform: translateX(305px);
+.parallax img#gate-right {
+  position: fixed;
+  transform: translateX(388px);
 }
 
-.sec{
+/** Parallax **/
+
+.sec {
   position: relative;
-  background: url(../images/bg\ 1.png) no-repeat;
+  background: #020912;
   padding: 30px 100px;
+  height: 100vh;
 }
 
-.sec h2{
- font-size: 3em;
- color: #fff;
- margin-bottom: 10px; 
+.sec h2 {
+  font-size: 3em;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
-.sec p{
+.sec p {
   font-size: 1em;
   color: #fff;
   font-weight: 300;
   text-align: justify;
 }
 
-@media(min-width:1200px){
-  #text{
-    font-size: 4.5em;
+@media(min-width:576px) {
+  header {
+    padding: 15px 45px;
+  }
+
+  .logo {
+    width: 10em;
+    user-select: none;
+  }
+
+  .navigation a {
+    font-size: 1em;
+  }
+
+  .parallax img#gate-left {
+    position: fixed;
+    transform: translateX(-275px);
+  }
+  
+  .parallax img#gate-right {
+    position: fixed;
+    transform: translateX(298px);
   }
 }
 
-@media(min-width:768px){
+@media(min-width:768px) {
+  header {
+    padding: 17px 47px;
+  }
+
+  .logo {
+    width: 12em;
+  }
+
+  .navigation a {
+    font-size: 1.2em;
+  }
+}
+
+@media(min-width:992px) {
+  header {
+    padding: 18px 49px;
+  }
+
+  .logo {
+    width: 14em;
+  }
+
+  .navigation a {
+    font-size: 1.3em;
+  }
+}
+
+@media(min-width:1200px) {
+  header {
+    padding: 18px 49px;
+  }
+
+  .logo {
+    width: 14em;
+  }
+
+  .navigation a {
+    font-size: 1.3em;
+  }
+
   #text{
-    font-size: 1em;
+    font-size: 6.25em;
+  }
+
+  .parallax img#gate-left {
+    position: fixed;
+    transform: translateX(-375px);
+  }
+  
+  .parallax img#gate-right {
+    position: fixed;
+    transform: translateX(400px);
   }
 }
