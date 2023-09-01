@@ -3,26 +3,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@700&family=Roboto:wght@100&display=swap');
 
 html {
-  height: 100%;
+  height: auto;
+  width: auto;
 }
 
 body {
-  padding: 1rem 5rem;
+  margin: 30px;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(45deg, rgba(183, 204, 246, 0.7), rgba(7, 43, 127, 0.67)), url(../images/pexels-johannes-plenio-1118873.jpg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .logo {
-  width: 20vh;
+  width: 25vh;
 }
+
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+nav {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 .header h1 {
@@ -51,8 +62,8 @@ body {
   border: none;
 }
 
-#search:hover{
-  color:white;
+#search:hover {
+  color: white;
   background: blue;
 }
 
@@ -88,14 +99,15 @@ main {
   margin-bottom: 10px;
 }
 
-.temp-box{
+.temp-box {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 30px 0;
 }
 
-#clouds, #day {
+#clouds,
+#day {
   font-size: 20px;
   background: rgba(153, 205, 50, 0.75);
   padding: 2px 20px;
@@ -103,24 +115,28 @@ main {
   text-transform: capitalize;
 }
 
-#day{
+#day {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   background: #772a0b;
   padding: 5px;
 }
 
-.next{
- display: flex;
- justify-content: space-between; 
- align-items: center;
- margin: 10px 0;
- font-weight: 500;
+.next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  font-weight: 500;
 }
 
-.next p{
+.next p {
   margin: 3px 0;
 }
 
-.cast-header{
+.cast-header {
   color: aliceblue;
   background: rgba(254, 189, 132, 0.5);
   width: max-content;
@@ -131,34 +147,140 @@ main {
   text-transform: capitalize;
 }
 
-.time, .date{
+.time,
+.date {
   color: rgb(254, 189, 132);
   font-weight: 600;
 }
 
-.desc, .description{
-  color: rgb(196,255,77);
+.desc,
+.description {
+  color: rgb(196, 255, 77);
   text-transform: capitalize;
 }
 
-.divider1, .divider2{
- background: rgba(254, 189, 132, 0.5); 
- height: 200px;
- border-radius: 5px;
+.divider1,
+.divider2 {
+  background: rgba(254, 189, 132, 0.5);
+  height: 200px;
+  border-radius: 5px;
 }
 
-.divider2{
+.divider2 {
   height: 5px;
   width: 30%;
   margin: 0 auto;
 }
 
-.forecastD{
+.forecastD {
   margin: 20px 50px;
   color: aliceblue;
 }
 
-.weekF{
+.weekF {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+/** MEDIA QUERIES **/
+
+@media(max-width:575px) {
+
+  .logo {
+    width: 20vh;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav {
+    justify-content: space-between;
+  }
+
+  #input,
+  #search {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 50px;
+    max-width: max-content;
+    width: 100%;
+  }
+
+  .header h1 {
+    font-size: 2vh;
+  }
+
+
+  .divider1,
+  .divider2 {
+    height: 5px;
+    width: 100%;
+  }
+
+  main,
+  .forecastD {
+    margin: 0;
+  }
+
+  main {
+    display: block;
+  }
+
+  main .divider1 {
+    visibility: hidden;
+  }
+
+  .forecastD {
+    display: grid;
+  }
+
+  .temp-box {
+    display: flex;
+    margin: 5px;
+  }
+
+  .weather img {
+    width: 80px;
+    height: 80px;
+  }
+
+  #temperature {
+    font-size: 40px;
+  }
+
+  #clouds {}
+
+  p .cast-header {}
+
+  .temp-box {
+    padding-block: 10px;
+  }
+
+  .forecastH {}
+
+  .weekF {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+}
+
+
+
+
+@media(min-width:576) {
+
+  .logo {
+    width: 25vh;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
 }

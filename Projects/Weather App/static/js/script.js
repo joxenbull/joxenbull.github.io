@@ -20,10 +20,18 @@ window.addEventListener("load", () => {
                 })
                 .catch((error) => {
                     console.error("Error fetching weather data: ", error);
+                    alert("Error Fetching Data");
                 });
         });
     }
 });
+
+// Function to reset the input field
+function resetInputField() {
+    setTimeout(() => {
+        document.getElementById('input').value = ''; // Clear the input field's value
+    }, 2000); // Delay in milliseconds (2000ms = 2 seconds)
+}
 
 // Search button click event
 document.getElementById('search').addEventListener('click', () => {
@@ -35,19 +43,24 @@ document.getElementById('search').addEventListener('click', () => {
         .then((data) => {
             console.log(data);
             weatherReport(data);
+            resetInputField(); // Reset the input field after clicking the search button
         })
         .catch((error) => {
             console.error("Error fetching weather data: ", error);
+            alert("Error Fetching Data");
         });
 });
 
 // Handle Enter key press in the input field
 document.getElementById('input').addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
+        // Prevent the default form submission behavior
+        event.preventDefault();
         // Simulate a click on the search button when Enter is pressed
         document.getElementById('search').click();
     }
 });
+
 
 function weatherReport(data) {
     var urlcast = `https://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apiKey}`;
@@ -62,25 +75,6 @@ function weatherReport(data) {
             // City
             document.getElementById('city').innerText = forecast.city.name + ', ' + forecast.city.country;
 
-            // Day
-            const timestamp = forecast.list[0].dt * 1000; // Use the first forecasted time
-            const date = new Date(timestamp);
-
-            // Format options for date and time
-            const options = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-            };
-
-            // Format the date and time
-            const formattedDate = date.toLocaleString('en-US', options);
-
-            // Update the content of the <h3> element
-            const h3Element = document.getElementById('day');
-            h3Element.textContent = formattedDate;
-
             // Temperature
             document.getElementById('temperature').innerText = Math.floor(forecast.list[0].main.temp - 273) + '°C';
 
@@ -91,9 +85,43 @@ function weatherReport(data) {
             let icon = forecast.list[0].weather[0].icon;
             let iconurl = "https://api.openweathermap.org/img/w/" + icon + ".png";
             document.getElementById('img').src = iconurl;
+
+            // Day// Check if 'dt' field exists and is a valid timestamp in the JSON data
+            if (data.dt && typeof data.dt === 'number') {
+                // Convert the timestamp (dt) to a JavaScript Date object
+                const timestamp = data.dt * 1000; // Convert to milliseconds
+                const date = new Date(timestamp);
+
+                // Get the individual components of the date and time
+                const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const dayOfWeek = daysOfWeek[date.getDay()]; // Get the day of the week
+                const year = date.getFullYear();
+
+                // Array of month names
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                const monthName = monthNames[date.getMonth()]; // Get the month name
+                const dayOfMonth = date.getDate().toString().padStart(2, '0');
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                const seconds = date.getSeconds().toString().padStart(2, '0');
+
+                // Format the date and time as a string
+                const formattedDateTime = `${dayOfWeek} , ${dayOfMonth} ${monthName} ${year} , ${hours} : ${minutes}`;
+
+                // Update the content of the <h3> element
+                const h3Element = document.getElementById('day');
+                h3Element.textContent = formattedDateTime;
+
+                console.log(`The date and time is: ${formattedDateTime}`);
+            } else {
+                console.log('Invalid or missing timestamp in the JSON data.');
+            }
+
+
         })
         .catch((error) => {
             console.error("Error fetching forecast data: ", error);
+            alert("Error Fetching Forecast Data, Search Again, Check Spelling");
         });
 }
 
