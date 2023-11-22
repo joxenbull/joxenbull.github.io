@@ -79,7 +79,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var imageContainer = document.getElementById("image-container");
-    var maxImageCount = 150; // Max number of images
+    var maxImageCount = 160; // Max number of images
 
     // Generate and display image elements
     for (var i = 1; i <= maxImageCount; i++) {
